@@ -66,7 +66,7 @@ class BoolQ:
         self.question = question
 
         sequence = self.tokenizer.encode_plus(
-            question, passage, return_tensors="pt", truncation="True")['input_ids'].to(device())
+            question, passage, return_tensors="pt", truncation=True)['input_ids'].to(device())
 
         logits = self.model(sequence)[0]
         probabilities = torch.softmax(logits, dim=1).detach().cpu().tolist()[0]
